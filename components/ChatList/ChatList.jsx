@@ -1,5 +1,7 @@
 import React from 'react'
 import ChatListItem from './ChatListItem';
+import { MdMoreHoriz } from 'react-icons/md';
+import { IconContext } from 'react-icons';
 
 export default function ChatList(props) {
     const items = props.items.map(user =>
@@ -11,6 +13,13 @@ export default function ChatList(props) {
         </ChatListItem>);
 
     return (<div>
+        <button className="btn btn-circle btn-ghost btn-sm">
+            <IconContext.Provider value={{ className: "text-xl" }}>
+                <div>
+                    <MdMoreHoriz />
+                </div>
+            </IconContext.Provider>
+        </button>
         {items}
     </div>)
 }
