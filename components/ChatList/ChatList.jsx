@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import ChatListItem from './ChatListItem';
-import { MdMoreHoriz } from 'react-icons/md';
-import { IconContext } from 'react-icons';
+import Icon from '@mdi/react';
+import { mdiDotsHorizontal } from '@mdi/js'
 
 export default function ChatList(props) {
     const items = props.items.map(user =>
@@ -12,14 +12,15 @@ export default function ChatList(props) {
             avatar={user.avatar}>
         </ChatListItem>);
 
-    return (<div>
-        <button className="btn btn-circle btn-ghost btn-sm">
-            <IconContext.Provider value={{ className: "text-xl" }}>
-                <div>
-                    <MdMoreHoriz />
-                </div>
-            </IconContext.Provider>
-        </button>
-        {items}
-    </div>)
+    return (
+        <div>
+            <button className="btn btn-circle btn-ghost btn-sm">
+                <Icon path={mdiDotsHorizontal}
+                    title="More"
+                    size={1}
+                />
+            </button>
+            {items}
+        </div>
+    )
 }

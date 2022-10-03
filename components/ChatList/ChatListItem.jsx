@@ -1,11 +1,43 @@
-import Image from 'next/Image'
-import { React, useState } from 'react'
-import { MdMoreHoriz } from 'react-icons/md';
-import { IconContext } from "react-icons";
+import { React, useState } from 'react';
+import Image from 'next/Image';
+import Icon from '@mdi/react';
+import { mdiAccount, mdiBell, mdiCheck, mdiDotsHorizontal } from '@mdi/js';
 
 export default function ChatListItem(props) {
     const [isHoverItem, setIsHoverItem] = useState(false);
     const [isHoverMenu, setIsHoverMenu] = useState(false);
+
+    const menuDropdown = <div className="dropdown">
+        <label tabIndex={0}
+            className="btn btn-circle btn-outline btn-primary btn-sm m-1"
+            onMouseOver={() => setIsHoverMenu(true)}
+            onMouseOut={() => setIsHoverMenu(false)}>
+            <Icon path={mdiDotsHorizontal}
+                title="More"
+                size={1}
+            />
+        </label>
+        <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-64">
+            <li>
+                <a>
+                    <Icon path={mdiCheck} title="Marquer comme non lu" size={'18px'} />
+                    <span className='text-sm font-bold'>Marquer comme non lu</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <Icon path={mdiBell} title="Désactiver les notifications" size={'18px'} />
+                    <span className='text-sm font-bold'>Désactiver les notifications</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <Icon path={mdiAccount} title="Voir le profil" size={'18px'} />
+                    <span className='text-sm font-bold'>Voir le profil</span>
+                </a>
+            </li>
+        </ul>
+    </div>;
 
     return (
         <div className={`mx-1 p-2 w-96 h-16 rounded-lg transition duration-300 ease-in-out flex cursor-pointer bg-white ${!isHoverMenu && 'hover:bg-gray-100'}`}
@@ -24,16 +56,7 @@ export default function ChatListItem(props) {
                 <div className='text-base font-medium'>{props.name}</div>
                 <div className='text-sm font-normal text-neutral-600'>{props.lastMessage.substring(0, 32)} {props.lastMessage.length > 32 && '...'}</div>
             </div>
-            {/* MENU BUTTON */}
-            {isHoverItem && <div className={`flex-none rounded-full h-10 w-10 my-auto border border-gray-200 transition duration-300 ease-in-out bg-white hover:bg-gray-100`}
-                onMouseOver={() => setIsHoverMenu(true)}
-                onMouseOut={() => setIsHoverMenu(false)}>
-                <IconContext.Provider value={{ className: "h-9 w-6 block mx-auto text-neutral-600" }}>
-                    <div>
-                        <MdMoreHoriz />
-                    </div>
-                </IconContext.Provider>
-            </div>}
+            {isHoverItem && menuDropdown}
         </div>
     )
 }
