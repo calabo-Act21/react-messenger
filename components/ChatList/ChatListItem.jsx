@@ -2,8 +2,10 @@ import { React, useState } from 'react';
 import Image from 'next/Image';
 import Icon from '@mdi/react';
 import { mdiAccount, mdiBell, mdiCheck, mdiDotsHorizontal } from '@mdi/js';
+import { useTranslation } from 'next-i18next';
 
 export default function ChatListItem(props) {
+    const { t } = useTranslation('chat');
     const [isHoverItem, setIsHoverItem] = useState(false);
     const [isHoverMenu, setIsHoverMenu] = useState(false);
 
@@ -20,20 +22,20 @@ export default function ChatListItem(props) {
         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-64">
             <li>
                 <a>
-                    <Icon path={mdiCheck} title="Marquer comme non lu" size={'18px'} />
-                    <span className='text-sm font-bold'>Marquer comme non lu</span>
+                    <Icon path={mdiCheck} title={t('MARK_AS_UNREAD')} size={'18px'} />
+                    <span className='text-sm font-bold'>{t('MARK_AS_UNREAD')}</span>
                 </a>
             </li>
             <li>
                 <a>
-                    <Icon path={mdiBell} title="Désactiver les notifications" size={'18px'} />
-                    <span className='text-sm font-bold'>Désactiver les notifications</span>
+                    <Icon path={mdiBell} title={t('DISABLE_NOTIFICATIONS')} size={'18px'} />
+                    <span className='text-sm font-bold'>{t('DISABLE_NOTIFICATIONS')}</span>
                 </a>
             </li>
             <li>
                 <a>
-                    <Icon path={mdiAccount} title="Voir le profil" size={'18px'} />
-                    <span className='text-sm font-bold'>Voir le profil</span>
+                    <Icon path={mdiAccount} title="{t('SHOW_USER_PROFILE')}" size={'18px'} />
+                    <span className='text-sm font-bold'>{t('SHOW_USER_PROFILE')}</span>
                 </a>
             </li>
         </ul>
