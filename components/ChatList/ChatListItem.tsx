@@ -1,10 +1,18 @@
-import { React, useState } from 'react';
-import Image from 'next/Image';
-import Icon from '@mdi/react';
 import { mdiAccount, mdiBell, mdiCheck, mdiDotsHorizontal } from '@mdi/js';
+import Icon from '@mdi/react';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
+import { FunctionComponent, useState } from 'react';
 
-export default function ChatListItem(props) {
+type ChatListItemProps = {
+    key: string;
+    name: string;
+    avatar: string;
+    lastMessage: string;
+    children: never[];
+}
+
+export const ChatListItem: FunctionComponent<ChatListItemProps> = (props) => {
     const { t } = useTranslation('chat');
     const [isHoverItem, setIsHoverItem] = useState(false);
     const [isHoverMenu, setIsHoverMenu] = useState(false);

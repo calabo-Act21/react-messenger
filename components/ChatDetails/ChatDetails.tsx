@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function ChatDetails() {
+type Props = {}
+
+export default function ChatDetails({ }: Props) {
     return (
         <div className='w-96'>ChatDetails</div>
     )

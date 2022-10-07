@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function ChatRoom() {
+type Props = {}
+
+export default function ChatRoom({ }: Props) {
     return (
         <div>ChatRoom</div>
     )
