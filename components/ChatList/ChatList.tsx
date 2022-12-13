@@ -1,6 +1,6 @@
 import { mdiDotsHorizontal } from '@mdi/js';
 import Icon from '@mdi/react';
-import { ChatListItem } from './ChatListItem';
+import ChatListItem from './ChatListItem';
 import { ChatListItemModel } from './ChatListItemModel';
 
 type ChatListProps = {

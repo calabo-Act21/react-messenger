@@ -9,7 +9,7 @@ type ChatListItemProps = {
     lastMessage: string;
     children: never[];
 }
-export const ChatListItem: FunctionComponent<ChatListItemProps> = (props) => {
+export default function ChatListItem(props: ChatListItemProps) {
     const [isHoverItem, setIsHoverItem] = useState(false);
     const [isHoverMenu, setIsHoverMenu] = useState(false);
 
@@ -22,11 +22,15 @@ export const ChatListItem: FunctionComponent<ChatListItemProps> = (props) => {
             </div>
             <div className='flex-1 font-sans text-neutral-800'>
                 <div className='text-base font-medium'>{props.name}</div>
-                <div className='text-sm font-normal text-neutral-600'>{props.lastMessage.substring(0, 32)} {props.lastMessage.length > 32 && '...'}</div>
+                <div className='text-sm font-normal text-neutral-600'>
+                    {props.lastMessage.substring(0, 32)} {props.lastMessage.length > 32 && '...'}
+                </div>
             </div>
-            {isHoverItem && <ChatListItemMenu
-                onMouseOver={() => setIsHoverMenu(true)}
-                onMouseOut={() => setIsHoverMenu(false)}></ChatListItemMenu>}
+            {
+                isHoverItem && <ChatListItemMenu
+                    onMouseOver={() => setIsHoverMenu(true)}
+                    onMouseOut={() => setIsHoverMenu(false)}></ChatListItemMenu>
+            }
         </div>
     )
 }
